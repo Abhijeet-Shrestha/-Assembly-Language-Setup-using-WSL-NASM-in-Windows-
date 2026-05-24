@@ -98,7 +98,7 @@ nano hello.asm
 ```
 # Step 6: Write Assembly Program Code
 
-Example:
+Example 32 bit :
 ```asm
 section .data
     msg db "Hello, World!", 10
@@ -119,6 +119,26 @@ _start:
     int 0x80
 ```
 
+``` 64bit code
+section .data
+    msg db "Hello from 64-bit Assembly!", 10
+    len equ $ - msg
+
+section .text
+    global _start
+
+_start:
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, msg
+    mov rdx, len
+    syscall
+
+    mov rax, 60
+    xor rdi, rdi
+    syscall
+```
+
 Save:
 - CTRL + O
 - Enter
@@ -127,9 +147,13 @@ Save:
 ---
 
 Step 6: To run the code
-```bash
+```bash for 32bit
+nasm -f elf32 -o hello.o hello.asm
+ld -o hello hello.o
+./hello 
+```
+```bash for 64bit
 nasm -f elf64 -o hello.o hello.asm
 ld -o hello hello.o
 ./hello 
 ```
-
