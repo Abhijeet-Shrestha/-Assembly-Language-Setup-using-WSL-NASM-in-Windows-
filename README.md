@@ -101,7 +101,7 @@ nano hello.asm
 Example 32 bit :
 ```asm
 section .data
-    msg db "Hello, World!", 10
+    msg db "Hello from 64-bit Assembly!", 10
     len equ $ - msg
 
 section .text
@@ -119,7 +119,7 @@ _start:
     int 0x80
 ```
 
-``` 64bit code
+``` asm
 section .data
     msg db "Hello from 64-bit Assembly!", 10
     len equ $ - msg
